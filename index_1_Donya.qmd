@@ -1,6 +1,6 @@
 ---
 title: "Homework: Fizzbuzz"
-author: "Your Name"
+author: "Donya Negahbani"
 format: html
 ---
 
