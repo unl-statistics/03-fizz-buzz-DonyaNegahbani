@@ -83,7 +83,7 @@ if (x %% 3 == 0 & x %% 5 == 0) {
 
 
 ```{python solo-fizzbuzz-py, echo = T}
-x = 3
+x = 18
 
 # FizzBuzz code goes here
 
@@ -101,7 +101,7 @@ else:
 Modify the code above so that the result is stored in a value `y`.
 
 ```{r solo-fizzbuzz-stored-r, echo = T}
-x <- 3
+x <- 16
 y <- NA
 # FizzBuzz code goes here
 if (x %% 3 == 0 & x %% 5 == 0) {
@@ -120,7 +120,7 @@ print(paste("For x = ", x, " my code produces ", y, sep = ""))
 
 ```{python solo-fizzbuzz-stored-py, echo = T}
 import numpy as np
-x = 3
+x = 15
 y = np.nan
 
 # FizzBuzz code
@@ -161,7 +161,6 @@ for (i in 1:30) {
   }
 }
 
-# Printing the results in a data frame
 res <- data.frame(x = xx, result = yy)
 print(res)
 
@@ -184,8 +183,6 @@ for i in range(30):
         yy[i] = "Buzz"
     else:
         yy[i] = xx[i]
-
-# Printing the results in a data frame
 res = pd.DataFrame({"x": xx, "result": yy})
 print(res)
 
@@ -352,20 +349,12 @@ import numpy as np
 import pandas as pd
 from random import choices
 
-# Generate a random vector xx with 10 elements from the range 1 to 100
 xx = np.array(choices(range(1, 101), k=10)) 
-
-# Define the fizzbuzz function
 def fizzbuzz(x):
-    y = [None] * len(x)  # Initialize a list to store the results
-    
-    # Loop through each element of x
+    y = [None] * len(x)
     for i in range(len(x)):
         try:
-            # Ensure the element is numeric
-            value = float(x[i])  # Convert to float to ensure numeric
-            
-            # FizzBuzz logic
+            value = float(x[i]) 
             if value % 3 == 0 and value % 5 == 0:
                 y[i] = "FizzBuzz"
             elif value % 3 == 0:
@@ -373,17 +362,12 @@ def fizzbuzz(x):
             elif value % 5 == 0:
                 y[i] = "Buzz"
             else:
-                y[i] = int(value)  # Keep as integer if it's not FizzBuzz
+                y[i] = int(value) 
         except ValueError:
-            # Handle non-numeric input errors
             y[i] = f"Error: '{x[i]}' is not a number."
     
     return y
-
-# Apply the fizzbuzz function to the vector xx
 yy = fizzbuzz(x = xx)
-
-# Create a DataFrame to display the results
 res = pd.DataFrame({"x": xx, "result": yy})
 print(res)
 ```
