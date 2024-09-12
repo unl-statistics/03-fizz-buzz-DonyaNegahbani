@@ -392,8 +392,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">31</span>))  <span class="co"># Array from 1 to 30</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">30</span>  <span class="co"># Placeholder list for results</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">31</span>)) </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">30</span>  </span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># FizzBuzz code for a vector of values</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
@@ -470,16 +470,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    x   result
-1  17       17
-2  70     Buzz
-3  62       62
-4  13       13
-5  82       82
-6  20     Buzz
-7  73       73
-8  83       83
-9  60 FizzBuzz
-10 37       37</code></pre>
+1   4        4
+2  50     Buzz
+3  85     Buzz
+4  98       98
+5   1        1
+6  11       11
+7  69     Fizz
+8  30 FizzBuzz
+9  91       91
+10 45 FizzBuzz</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -507,16 +507,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    x    result
-0  33      Fizz
-1  30  FizzBuzz
-2   5      Buzz
-3  48      Fizz
-4  28        28
-5  99      Fizz
-6   8         8
-7  41        41
-8  79        79
-9  61        61</code></pre>
+0  75  FizzBuzz
+1  77        77
+2  85      Buzz
+3  17        17
+4  82        82
+5  65      Buzz
+6  77        77
+7  31        31
+8  54      Fizz
+9  98        98</code></pre>
 </div>
 </div>
 </section>
@@ -551,16 +551,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    x   result
-1  15 FizzBuzz
-2  32       32
-3  33     Fizz
-4  50     Buzz
+1   9     Fizz
+2  38       38
+3  75 FizzBuzz
+4  84     Fizz
 5   2        2
-6  11       11
-7  84     Fizz
-8  51     Fizz
-9  80     Buzz
-10 71       71</code></pre>
+6   1        1
+7  72     Fizz
+8  67       67
+9   7        7
+10 60 FizzBuzz</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  {</span>
@@ -608,16 +608,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    x    result
-0  68      68.0
-1  81      Fizz
-2  49      49.0
-3  36      Fizz
-4  15  FizzBuzz
-5  94      94.0
-6   5      Buzz
-7  54      Fizz
-8  21      Fizz
-9  30  FizzBuzz</code></pre>
+0   9      Fizz
+1  47      47.0
+2  40      Buzz
+3  31      31.0
+4  75  FizzBuzz
+5  58      58.0
+6  55      Buzz
+7  13      13.0
+8  39      Fizz
+9  99      Fizz</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>xx_1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">15</span>, <span class="st">'hello'</span>, <span class="dv">23</span>, <span class="st">'FizzBuzz'</span>, <span class="dv">45</span>, <span class="st">'world'</span>, <span class="dv">9</span>, <span class="st">'Buzz'</span>, <span class="dv">25</span>]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>yy_1 <span class="op">=</span> fizzbuzz(xx_1)</span>
@@ -669,16 +669,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    x   result
-1  42     Fizz
-2  73       73
-3  86       86
-4  13       13
-5  69     Fizz
-6  55     Buzz
-7  99     Fizz
-8  15 FizzBuzz
-9  88       88
-10 84     Fizz</code></pre>
+1  46       46
+2  24     Fizz
+3  33     Fizz
+4  63     Fizz
+5  72     Fizz
+6  42     Fizz
+7  12     Fizz
+8  21     Fizz
+9  34       34
+10 45 FizzBuzz</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>xx_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="st">'hello'</span>, <span class="dv">23</span>, <span class="st">'FizzBuzz'</span>, <span class="dv">45</span>, <span class="st">'world'</span>, <span class="dv">9</span>, <span class="st">'Buzz'</span>, <span class="dv">25</span>)  </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
@@ -697,43 +697,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(x)  <span class="co"># Initialize the result list</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(x)</span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> <span class="bu">float</span>(x[i])</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># FizzBuzz logic</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> value</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>            result[i] <span class="op">=</span> <span class="ss">f"Error: '</span><span class="sc">{</span>x[i]<span class="sc">}</span><span class="ss">' is not a number."</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.random.choice(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), <span class="dv">10</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(xx)</span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> value</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>            result[i] <span class="op">=</span> <span class="ss">f"Error: '</span><span class="sc">{</span>x[i]<span class="sc">}</span><span class="ss">' is not a number."</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.random.choice(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), <span class="dv">10</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(xx)</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x result
-0  17   17.0
-1  95   Buzz
-2  54   Fizz
-3  12   Fizz
-4   1    1.0
-5  51   Fizz
-6  37   37.0
-7  52   52.0
-8  81   Fizz
-9  84   Fizz</code></pre>
+<pre><code>    x    result
+0  15  FizzBuzz
+1  84      Fizz
+2  41      41.0
+3  94      94.0
+4   5      Buzz
+5  23      23.0
+6  24      Fizz
+7  80      Buzz
+8  49      49.0
+9  78      Fizz</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>xx_1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">15</span>, <span class="st">'hello'</span>, <span class="dv">23</span>, <span class="st">'FizzBuzz'</span>, <span class="dv">45</span>, <span class="st">'world'</span>, <span class="dv">9</span>, <span class="st">'Buzz'</span>, <span class="dv">25</span>]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>yy_1 <span class="op">=</span> fizzbuzz(xx_1)</span>
