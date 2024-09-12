@@ -30,8 +30,8 @@ Start by filling in the following table for the numbers 1:30 manually, to get a 
 | 6     |Fizz     |
 | 7     |7        |
 | 8     |8        |
-| 9     |Buzz     |
-| 10    |10       |
+| 9     |Fizz     |
+| 10    |Buzz     |
 | 11    |11       |
 | 12    |Fizz     |
 | 13    |13       |
@@ -40,8 +40,8 @@ Start by filling in the following table for the numbers 1:30 manually, to get a 
 | 16    |16       |
 | 17    |17       |
 | 18    |Fizz     |
-| 19    |Buzz     |
-| 20    |20       |
+| 19    |19       |
+| 20    |Buzz     |
 | 21    |Fizz     |
 | 22    |22       |
 | 23    |23       |
@@ -251,8 +251,9 @@ You cannot always assume that the person using your functions knows what they're
 In R, you can use the function [`stopifnot()` to halt function execution if there is an error](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/stopifnot); this will give you a basic error message. 
 
 ```{r stopifnotdemo, error = T}
+#FizzBuzz with stopifnot
 fizzbuzz <- function(x) {
-  stopifnot(is.numeric(x)) 
+  stopifnot(is.numeric(x))
   
   result <- rep(NA, length(x))  
   for (i in 1:length(x)) {
@@ -275,6 +276,17 @@ yy <- fizzbuzz(xx)
 res <- data.frame(x = xx, result = yy)
 print(res)
 
+tryCatch(
+  {
+    yy_test <- fizzbuzz(c("a", "b", "c"))
+  },
+  error = function(e) {
+    print("Error caught: Non-numeric input detected")
+    print(e)
+  }
+)
+
+
 ```
 
 In Python, you can use a [`try:` statement with a `except:` clause](https://docs.python.org/3/tutorial/errors.html#handling-exceptions). This functions like an if-else statement, where if no error occurs, the except statement is never executed.
@@ -282,15 +294,14 @@ In Python, you can use a [`try:` statement with a `except:` clause](https://docs
 ```{python tryexceptdemo, error = T}
 import numpy as np
 import pandas as pd
-from random import choices
-xx = np.array(choices(range(1, 101), k=10))
+
+
 def fizzbuzz(x):
-    y = [None] * len(x)
+    y = [None] * len(x) 
+    
     for i in range(len(x)):
         try:
             value = float(x[i])
-            
-            # FizzBuzz logic
             if value % 3 == 0 and value % 5 == 0:
                 y[i] = "FizzBuzz"
             elif value % 3 == 0:
@@ -300,14 +311,20 @@ def fizzbuzz(x):
             else:
                 y[i] = value
         
-        except ValueError as e:
+        except ValueError:
             y[i] = f"Error: '{x[i]}' is not a number."
     
     return y
 
-yy = fizzbuzz(x = xx)
+xx = np.random.choice(range(1, 101), 10, replace=False)
+yy = fizzbuzz(xx)
 res = pd.DataFrame({"x": xx, "result": yy})
 print(res)
+
+xx_1 = [1, 15, 'hello', 23, 'FizzBuzz', 45, 'world', 9, 'Buzz', 25]
+yy_1 = fizzbuzz(xx_1)
+res_1 = pd.DataFrame({"x": xx_1, "result": yy_1})
+print(res_1)
 
 ```
 
@@ -315,59 +332,82 @@ See more examples of this in the [Input Validation](https://srvanderplas.github.
 
 
 ```{r function-error-fizzbuzz-r}
-xx <- sample(1:100, 10)
-yy <- rep(NA, 10) 
 fizzbuzz <- function(x) {
-  stopifnot(is.numeric(x))
-  
   result <- rep(NA, length(x))
   
   for (i in 1:length(x)) {
-    if (x[i] %% 3 == 0 & x[i] %% 5 == 0) {
-      result[i] <- "FizzBuzz"
-    } else if (x[i] %% 3 == 0) {
-      result[i] <- "Fizz"
-    } else if (x[i] %% 5 == 0) {
-      result[i] <- "Buzz"
+    value <- suppressWarnings(as.numeric(x[i]))
+    if (is.na(value)) {
+      stop(paste("Error:", x[i], "is not a valid number.")) 
     } else {
-      result[i] <- x[i]
+      if (value %% 3 == 0 && value %% 5 == 0) {
+        result[i] <- "FizzBuzz"
+      } else if (value %% 3 == 0) {
+        result[i] <- "Fizz"
+      } else if (value %% 5 == 0) {
+        result[i] <- "Buzz"
+      } else {
+        result[i] <- as.character(value)  
+      }
     }
   }
   
   return(result)
 }
 
-yy <- fizzbuzz(x = xx)
 
-res <- cbind(x = xx, result = yy)
+xx <- sample(1:100, 10) 
+yy <- fizzbuzz(xx)
+res <- data.frame(x = xx, result = yy)
 print(res)
+
+xx_1 <- c(1, 15, 'hello', 23, 'FizzBuzz', 45, 'world', 9, 'Buzz', 25)  
+tryCatch({
+  yy_1 <- fizzbuzz(xx_1)
+  res_1 <- data.frame(x = xx_1, result = yy_1)
+  print(res_1)
+}, error = function(e) {
+  print(e)
+})
+
+
 
 ```
 
 ```{python function-error-fizzbuzz-py}
 import numpy as np
 import pandas as pd
-from random import choices
 
-xx = np.array(choices(range(1, 101), k=10)) 
 def fizzbuzz(x):
-    y = [None] * len(x)
+    result = [None] * len(x)  # Initialize the result list
+    
     for i in range(len(x)):
         try:
-            value = float(x[i]) 
+            value = float(x[i])
+            
+            # FizzBuzz logic
             if value % 3 == 0 and value % 5 == 0:
-                y[i] = "FizzBuzz"
+                result[i] = "FizzBuzz"
             elif value % 3 == 0:
-                y[i] = "Fizz"
+                result[i] = "Fizz"
             elif value % 5 == 0:
-                y[i] = "Buzz"
+                result[i] = "Buzz"
             else:
-                y[i] = int(value) 
+                result[i] = value
+        
         except ValueError:
-            y[i] = f"Error: '{x[i]}' is not a number."
+            result[i] = f"Error: '{x[i]}' is not a number."
     
-    return y
-yy = fizzbuzz(x = xx)
+    return result
+
+xx = np.random.choice(range(1, 101), 10, replace=False)
+yy = fizzbuzz(xx)
 res = pd.DataFrame({"x": xx, "result": yy})
 print(res)
+
+xx_1 = [1, 15, 'hello', 23, 'FizzBuzz', 45, 'world', 9, 'Buzz', 25]
+yy_1 = fizzbuzz(xx_1)
+res_1 = pd.DataFrame({"x": xx_1, "result": yy_1})
+print(res_1)
+
 ```

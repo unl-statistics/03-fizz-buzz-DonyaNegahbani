@@ -160,11 +160,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>9</td>
-<td>Buzz</td>
+<td>Fizz</td>
 </tr>
 <tr class="even">
 <td>10</td>
-<td>10</td>
+<td>Buzz</td>
 </tr>
 <tr class="odd">
 <td>11</td>
@@ -200,11 +200,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>19</td>
-<td>Buzz</td>
+<td>19</td>
 </tr>
 <tr class="even">
 <td>20</td>
-<td>20</td>
+<td>Buzz</td>
 </tr>
 <tr class="odd">
 <td>21</td>
@@ -469,17 +469,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x result
-1  32     32
-2  35   Buzz
-3  29     29
-4  65   Buzz
-5  28     28
-6  57   Fizz
-7  18   Fizz
-8  98     98
-9  10   Buzz
-10 81   Fizz</code></pre>
+<pre><code>    x   result
+1  17       17
+2  70     Buzz
+3  62       62
+4  13       13
+5  82       82
+6  20     Buzz
+7  73       73
+8  83       83
+9  60 FizzBuzz
+10 37       37</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -506,17 +506,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x result
-0  83     83
-1  59     59
-2  98     98
-3  14     14
-4  41     41
-5  12   Fizz
-6   5   Buzz
-7  25   Buzz
-8  71     71
-9  17     17</code></pre>
+<pre><code>    x    result
+0  33      Fizz
+1  30  FizzBuzz
+2   5      Buzz
+3  48      Fizz
+4  28        28
+5  99      Fizz
+6   8         8
+7  41        41
+8  79        79
+9  61        61</code></pre>
 </div>
 </div>
 </section>
@@ -525,167 +525,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You cannot always assume that the person using your functions knows what they’re doing. Add a check to the function you wrote in the last question so that it will handle non-numeric input by issuing an error message.</p>
 <p>In R, you can use the function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/stopifnot"><code>stopifnot()</code> to halt function execution if there is an error</a>; this will give you a basic error message.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fizzbuzz <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x)) </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))  </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> x[i] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"Fizz"</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"Buzz"</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> x[i]</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>) </span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">fizzbuzz</span>(xx)</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#FizzBuzz with stopifnot</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fizzbuzz <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))  </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> x[i] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"Fizz"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"Buzz"</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> x[i]</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>) </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">fizzbuzz</span>(xx)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x result
-1  59     59
-2   5   Buzz
-3  36   Fizz
-4  47     47
-5  26     26
-6   6   Fizz
-7  23     23
-8  10   Buzz
-9   4      4
-10 58     58</code></pre>
+<pre><code>    x   result
+1  15 FizzBuzz
+2  32       32
+3  33     Fizz
+4  50     Buzz
+5   2        2
+6  11       11
+7  84     Fizz
+8  51     Fizz
+9  80     Buzz
+10 71       71</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    yy_test <span class="ot">&lt;-</span> <span class="fu">fizzbuzz</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"Error caught: Non-numeric input detected"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Error caught: Non-numeric input detected"
+&lt;simpleError in fizzbuzz(c("a", "b", "c")): is.numeric(x) is not TRUE&gt;</code></pre>
 </div>
 </div>
 <p>In Python, you can use a <a href="https://docs.python.org/3/tutorial/errors.html#handling-exceptions"><code>try:</code> statement with a <code>except:</code> clause</a>. This functions like an if-else statement, where if no error occurs, the except statement is never executed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> choices</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(choices(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), k<span class="op">=</span><span class="dv">10</span>))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(x)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> <span class="bu">float</span>(x[i])</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># FizzBuzz logic</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> value</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="ss">f"Error: '</span><span class="sc">{</span>x[i]<span class="sc">}</span><span class="ss">' is not a number."</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(x <span class="op">=</span> xx)</span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(x) </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> <span class="bu">float</span>(x[i])</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> value</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="ss">f"Error: '</span><span class="sc">{</span>x[i]<span class="sc">}</span><span class="ss">' is not a number."</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.random.choice(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), <span class="dv">10</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(xx)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x result
-0  37   37.0
-1  66   Fizz
-2  25   Buzz
-3  66   Fizz
-4  13   13.0
-5  66   Fizz
-6  69   Fizz
-7   3   Fizz
-8  95   Buzz
-9  20   Buzz</code></pre>
+<pre><code>    x    result
+0  68      68.0
+1  81      Fizz
+2  49      49.0
+3  36      Fizz
+4  15  FizzBuzz
+5  94      94.0
+6   5      Buzz
+7  54      Fizz
+8  21      Fizz
+9  30  FizzBuzz</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>xx_1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">15</span>, <span class="st">'hello'</span>, <span class="dv">23</span>, <span class="st">'FizzBuzz'</span>, <span class="dv">45</span>, <span class="st">'world'</span>, <span class="dv">9</span>, <span class="st">'Buzz'</span>, <span class="dv">25</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>yy_1 <span class="op">=</span> fizzbuzz(xx_1)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>res_1 <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx_1, <span class="st">"result"</span>: yy_1})</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          x                              result
+0         1                                 1.0
+1        15                            FizzBuzz
+2     hello     Error: 'hello' is not a number.
+3        23                                23.0
+4  FizzBuzz  Error: 'FizzBuzz' is not a number.
+5        45                            FizzBuzz
+6     world     Error: 'world' is not a number.
+7         9                                Fizz
+8      Buzz      Error: 'Buzz' is not a number.
+9        25                                Buzz</code></pre>
 </div>
 </div>
 <p>See more examples of this in the <a href="https://srvanderplas.github.io/stat-computing-r-python/part-gen-prog/05-functions.html#input-validation">Input Validation</a> section of the textbook.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>) </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fizzbuzz <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> x[i] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"Fizz"</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x[i] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> <span class="st">"Buzz"</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>      result[i] <span class="ot">&lt;-</span> x[i]</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">fizzbuzz</span>(<span class="at">x =</span> xx)</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fizzbuzz <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(x[i]))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(value)) {</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Error:"</span>, x[i], <span class="st">"is not a valid number."</span>)) </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        result[i] <span class="ot">&lt;-</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>        result[i] <span class="ot">&lt;-</span> <span class="st">"Fizz"</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        result[i] <span class="ot">&lt;-</span> <span class="st">"Buzz"</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>        result[i] <span class="ot">&lt;-</span> <span class="fu">as.character</span>(value)  </span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>) </span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">fizzbuzz</span>(xx)</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      x    result    
- [1,] "33" "Fizz"    
- [2,] "46" "46"      
- [3,] "61" "61"      
- [4,] "5"  "Buzz"    
- [5,] "48" "Fizz"    
- [6,] "92" "92"      
- [7,] "34" "34"      
- [8,] "19" "19"      
- [9,] "20" "Buzz"    
-[10,] "60" "FizzBuzz"</code></pre>
+<pre><code>    x   result
+1  42     Fizz
+2  73       73
+3  86       86
+4  13       13
+5  69     Fizz
+6  55     Buzz
+7  99     Fizz
+8  15 FizzBuzz
+9  88       88
+10 84     Fizz</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>xx_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="st">'hello'</span>, <span class="dv">23</span>, <span class="st">'FizzBuzz'</span>, <span class="dv">45</span>, <span class="st">'world'</span>, <span class="dv">9</span>, <span class="st">'Buzz'</span>, <span class="dv">25</span>)  </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  yy_1 <span class="ot">&lt;-</span> <span class="fu">fizzbuzz</span>(xx_1)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  res_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xx_1, <span class="at">result =</span> yy_1)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(res_1)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(e)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in fizzbuzz(xx_1): Error: hello is not a valid number.&gt;</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> choices</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(choices(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), k<span class="op">=</span><span class="dv">10</span>)) </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(x)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> <span class="bu">float</span>(x[i]) </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>                y[i] <span class="op">=</span> <span class="bu">int</span>(value) </span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="ss">f"Error: '</span><span class="sc">{</span>x[i]<span class="sc">}</span><span class="ss">' is not a number."</span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(x <span class="op">=</span> xx)</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(x)  <span class="co"># Initialize the result list</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> <span class="bu">float</span>(x[i])</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># FizzBuzz logic</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> value <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>                result[i] <span class="op">=</span> value</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>            result[i] <span class="op">=</span> <span class="ss">f"Error: '</span><span class="sc">{</span>x[i]<span class="sc">}</span><span class="ss">' is not a number."</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.random.choice(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), <span class="dv">10</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(xx)</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    x result
-0  27   Fizz
-1  99   Fizz
-2  49     49
-3  78   Fizz
-4  35   Buzz
-5  35   Buzz
-6  57   Fizz
-7  87   Fizz
-8  43     43
-9  72   Fizz</code></pre>
+0  17   17.0
+1  95   Buzz
+2  54   Fizz
+3  12   Fizz
+4   1    1.0
+5  51   Fizz
+6  37   37.0
+7  52   52.0
+8  81   Fizz
+9  84   Fizz</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>xx_1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">15</span>, <span class="st">'hello'</span>, <span class="dv">23</span>, <span class="st">'FizzBuzz'</span>, <span class="dv">45</span>, <span class="st">'world'</span>, <span class="dv">9</span>, <span class="st">'Buzz'</span>, <span class="dv">25</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>yy_1 <span class="op">=</span> fizzbuzz(xx_1)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>res_1 <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx_1, <span class="st">"result"</span>: yy_1})</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          x                              result
+0         1                                 1.0
+1        15                            FizzBuzz
+2     hello     Error: 'hello' is not a number.
+3        23                                23.0
+4  FizzBuzz  Error: 'FizzBuzz' is not a number.
+5        45                            FizzBuzz
+6     world     Error: 'world' is not a number.
+7         9                                Fizz
+8      Buzz      Error: 'Buzz' is not a number.
+9        25                                Buzz</code></pre>
 </div>
 </div>
 </section>
