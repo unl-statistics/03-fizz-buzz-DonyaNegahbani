@@ -276,12 +276,15 @@ yy <- fizzbuzz(xx)
 res <- data.frame(x = xx, result = yy)
 print(res)
 
-
-xx_test <- c('a', 'b', 'c')
-yy_test <- fizzbuzz(xx_test)
-res_test <- data.frame(x = xx_test, result = yy_test)
-print(res_test)
-
+tryCatch(
+  {
+    yy_test <- fizzbuzz(c("a", "b", "c"))
+  },
+  error = function(e) {
+    print("Error caught: Non-numeric input detected")
+    print(e)
+  }
+)
 ```
 
 In Python, you can use a [`try:` statement with a `except:` clause](https://docs.python.org/3/tutorial/errors.html#handling-exceptions). This functions like an if-else statement, where if no error occurs, the except statement is never executed.
@@ -315,12 +318,10 @@ xx = np.random.choice(range(1, 101), 10, replace=False)
 yy = fizzbuzz(xx)
 res = pd.DataFrame({"x": xx, "result": yy})
 print(res)
-
 xx_1 = [1, 15, 'hello', 23, 'FizzBuzz', 45, 'world', 9, 'Buzz', 25]
 yy_1 = fizzbuzz(xx_1)
 res_1 = pd.DataFrame({"x": xx_1, "result": yy_1})
 print(res_1)
-
 ```
 
 See more examples of this in the [Input Validation](https://srvanderplas.github.io/stat-computing-r-python/part-gen-prog/05-functions.html#input-validation) section of the textbook.
@@ -331,9 +332,10 @@ fizzbuzz <- function(x) {
   result <- rep(NA, length(x))
   
   for (i in 1:length(x)) {
-    value <- suppressWarnings(as.numeric(x[i]))
+    value <- suppressWarnings(as.numeric(x[i])) 
+    
     if (is.na(value)) {
-      stop(paste("Error:", x[i], "is not a valid number.")) 
+      result[i] <- paste("Error:", x[i], "is not a valid number.") 
     } else {
       if (value %% 3 == 0 && value %% 5 == 0) {
         result[i] <- "FizzBuzz"
@@ -342,7 +344,7 @@ fizzbuzz <- function(x) {
       } else if (value %% 5 == 0) {
         result[i] <- "Buzz"
       } else {
-        result[i] <- as.character(value)  
+        result[i] <- as.character(value) 
       }
     }
   }
@@ -350,12 +352,13 @@ fizzbuzz <- function(x) {
   return(result)
 }
 
-xx <- sample(1:100, 10) 
+
+xx <- sample(1:100, 10)
 yy <- fizzbuzz(xx)
 res <- data.frame(x = xx, result = yy)
 print(res)
 
-xx_test_1 <- c(1, 15, 'hello', 23, 'FizzBuzz', 45, 'world', 9, 'Buzz', 25)  
+xx_test_1 <- c(1, 15, 'hello', 23, 'FizzBuzz', 45, 'world', 9, 'Buzz', 25)
 yy_test_1 <- fizzbuzz(xx_test_1)
 res_test_1 <- data.frame(x = xx_test_1, result = yy_test_1)
 print(res_test_1)
